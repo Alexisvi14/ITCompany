@@ -6,18 +6,20 @@ import com.solvd.enums.Necessity;
 import com.solvd.enums.Speciality;
 import com.solvd.exceptions.AppointmentNotFoundException;
 import com.solvd.interfaces.Idev;
+import com.solvd.threads.Conection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import javax.security.auth.login.AccountNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Developer extends Employee implements Idev {
+public class Developer extends Employee implements Idev, Runnable {
     private static final Logger LOGGER = LogManager.getLogger(Developer.class);
 
     private long npi;
     private Speciality speciality;
     private List<Appointment> appoints = new ArrayList<>();
+    private Conection conection;
 
     public Developer(String firstName, String lastName, int id, Speciality speciality) {
         super(firstName, lastName, id);
@@ -48,6 +50,14 @@ public class Developer extends Employee implements Idev {
         this.appoints = appoints;
     }
 
+    public Conection getConection() {
+        return conection;
+    }
+
+    public void setConection(Conection conection) {
+        this.conection = conection;
+    }
+
     public void attendAppointment(Appointment appoint, Customer customer) throws AppointmentNotFoundException, AccountNotFoundException {
         if (appoints != null && this.getAppoints().contains(appoint) && customer.getAppoints().contains(appoint)) {
                 customer.payAppointment(appoint);
@@ -70,5 +80,10 @@ public class Developer extends Employee implements Idev {
     @Override
     public void dev(Developer developer) {
 
+    }
+
+    @Override
+    public void run() {
+        conection.getInfo();
     }
 }

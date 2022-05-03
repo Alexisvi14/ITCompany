@@ -20,16 +20,14 @@ public class Accountant extends Employee implements Ipay {
     }
 
     public void payEmployee(ItCompany itComp, Employee employee) {
-        try {
-            itComp.getAccount().withdraw(employee.getSalary());
+        if (itComp.getAccount().withdraw(employee.getSalary())) {
             employee.getAccount().deposit(employee.getSalary());
             LOGGER.info("Payment done successfully");
-        } catch (InsufficientFundsException e) {
-            LOGGER.error(e);
-        }
+        } else throw new InsufficientFundsException("");
     }
 
+
     @Override
-    public void pay(Employee employee) {
+    public void pay(Employee employee, int cost) {
     }
 }

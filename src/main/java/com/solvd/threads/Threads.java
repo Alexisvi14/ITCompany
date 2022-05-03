@@ -19,6 +19,7 @@ public class Threads {
         Dev1 d7 = new Dev1();
 
         ThreadPoolExecutor tp = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+        Conection dbConection = new Conection("Info of the data base");
         tp.execute(d);
         tp.execute(d1);
         tp.execute(d2);

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Receptionist extends Administrative {
-    private static Logger LOGGER = LogManager.getLogger(Receptionist.class);
+    private static final Logger LOGGER = LogManager.getLogger(Receptionist.class);
 
 
     public Receptionist(String firstName, String lastName, int id) {
@@ -32,7 +32,7 @@ public class Receptionist extends Administrative {
     public void removeAppointment(ItCompany itComp, Appointment appoints){
         if (itComp.getAppoints().add(appoints)){
             itComp.getAppoints().remove(appoints);
-            LOGGER.info("Appointment removed succesfully");
+            LOGGER.info("Appointment removed successfully");
         } else {
             throw new AppointmentNotFoundException("The appointment you want to remove does not exist");
         }

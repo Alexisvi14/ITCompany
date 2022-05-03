@@ -3,6 +3,7 @@ package com.solvd.customerRelated;
 import com.solvd.enums.Necessity;
 import com.solvd.generalPurpose.BankAccount;
 import com.solvd.generalPurpose.Person;
+import com.solvd.interfaces.Ipay;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import javax.security.auth.login.AccountNotFoundException;
@@ -76,6 +77,7 @@ public class Customer extends Person {
         this.hasNecessity = hasNecessity;
     }
 
+
     public void receiveAttention (Attention attention) {
         Random rd = new Random();
         this.setHasNecessity(rd.nextBoolean());
@@ -87,6 +89,7 @@ public class Customer extends Person {
             LOGGER.info("The customer has not received solution for " + attention.getNecessity().getNecessityLabel());
         }
     }
+
     public void payAppointment(Appointment app) throws AccountNotFoundException {
         if (this.getAccount() == null) {
             throw new AccountNotFoundException("Customer does not own a bank account");

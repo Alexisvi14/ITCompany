@@ -50,11 +50,12 @@ public class BankAccount {
             throw new InvalidAmountException("Can't deposit a negative amount");
         }
     }
-    public void withdraw (double amount) {
+    public boolean withdraw (double amount) {
         if (amount <= this.getBalance()) {
             this.setBalance(this.getBalance() - amount);
         } else {
             throw new InsufficientFundsException("Can't perform transaction: funds are insufficient");
         }
+        return false;
     }
 }
