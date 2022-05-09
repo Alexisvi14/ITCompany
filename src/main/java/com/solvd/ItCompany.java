@@ -4,6 +4,8 @@ import com.solvd.customerRelated.Appointment;
 import com.solvd.exceptions.EmployeeNotFoundException;
 import com.solvd.generalPurpose.Address;
 import com.solvd.generalPurpose.BankAccount;
+import com.solvd.interfaces.AddEmployee;
+import com.solvd.interfaces.Printable;
 import com.solvd.staff.Developer;
 import com.solvd.staff.administrative.Accountant;
 import com.solvd.staff.administrative.Receptionist;
@@ -12,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItCompany {
+public class ItCompany implements AddEmployee, Printable {
     private static final Logger LOGGER = LogManager.getLogger(ItCompany.class);
 
     private String name;
@@ -128,5 +130,25 @@ public class ItCompany {
             throw new EmployeeNotFoundException
                     ("The developer you' re trying to remove does not work for this company");
         }
+    }
+
+    @Override
+    public void addEmployee(int id, String name) {
+
+    }
+
+    @Override
+    public void updateEmployee(int id, String name) {
+
+    }
+
+    @Override
+    public void removeEmployee(int id) {
+
+    }
+
+    @Override
+    public void print(String info) {
+
     }
 }

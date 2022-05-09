@@ -1,6 +1,7 @@
 package com.solvd.threads;
 
 public class Conection{
+
     private String info;
 
     public Conection(String info) {

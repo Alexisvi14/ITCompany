@@ -62,7 +62,7 @@ public class Employee extends Person implements AddEmployee, Iwork {
     }
 
     @Override
-    public void updateEmployee(String name) {
+    public void updateEmployee(int id, String name) {
     }
 
     @Override

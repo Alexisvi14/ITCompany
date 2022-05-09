@@ -1,6 +1,5 @@
 package com.solvd;
 
-import com.solvd.customerRelated.Appointment;
 import com.solvd.customerRelated.Customer;
 import com.solvd.enums.Necessity;
 import com.solvd.enums.Speciality;
@@ -11,8 +10,10 @@ import com.solvd.interfaces.Discountable;
 import com.solvd.interfaces.ICalculate;
 import com.solvd.interfaces.Printable;
 import com.solvd.linkedList.LinkedList;
+import com.solvd.staff.CleaningStaff;
 import com.solvd.staff.Developer;
 import com.solvd.staff.Employee;
+import com.solvd.staff.TestAutomationEngineer;
 import com.solvd.staff.administrative.Accountant;
 import com.solvd.staff.administrative.Receptionist;
 import com.solvd.threads.Conection;
@@ -67,6 +68,13 @@ public class CompanyRunner {
         itComp.addRecepcionist(recs);
         itComp.addAccountant(acc);
 
+        itComp.addEmployee(10, "Saul Goodman");
+        itComp.addEmployee(21, "Hugo Villamayor");
+        itComp.updateEmployee(21, "Liliana Santa Cruz");
+        itComp.removeEmployee(10);
+        itComp.print("Data upload is now complete");
+
+
         Customer custA = new Customer("Carlos", "Mosqueda", 3231231, "asdd");
         BankAccount custaBankAccount = new BankAccount();
         custaBankAccount.setBalance(300.00);
@@ -100,6 +108,17 @@ public class CompanyRunner {
         devB.attendAppointment(devB.getAppoints().get(0), custA);
         devC.attendAppointment(devC.getAppoints().get(0), custD);
 
+        TestAutomationEngineer testAutomationEngineer = new TestAutomationEngineer("Roberto",
+                "Fernandez", 12);
+        testAutomationEngineer.work();
+        LOGGER.info("TA Engineer is active");
+
+        CleaningStaff cleaningStaff = new CleaningStaff("Carla", "Lezcano", 22);
+        cleaningStaff.clean();
+        LOGGER.info("The cleaning staff is working");
+
+        devB.dev(devB);
+        LOGGER.info("Brian Villamayor busy right now");
 
                 // Removing a Developer//
         if (itComp.getDevs().contains(devD)){
@@ -123,12 +142,12 @@ public class CompanyRunner {
                             "\n" + "So the total now is: " + "\n" + (p * (100 - q) / 100));
                 };
                 disc.discount('$', (x * y), 20);
-
             }
             Printable info = info1 -> {
                 LOGGER.info("Printing some info here");
             };
         };
+
 
         acc.pay(devB, 500);
         acc.pay(devA, 700);
