@@ -1,6 +1,7 @@
 package com.solvd;
 
 import com.solvd.customerRelated.Customer;
+import com.solvd.enums.Gender;
 import com.solvd.enums.Necessity;
 import com.solvd.enums.Speciality;
 import com.solvd.exceptions.EmployeeNotFoundException;
@@ -41,21 +42,28 @@ public class CompanyRunner {
 
 
                 //initializing employees//
-        Developer devA = new Developer("Micaela", "Feldmann", rd.nextInt(999999), Speciality.BEND);
-        devA.setAddress(new Address<>());
-        LOGGER.info(devA.getAddress());
+        Developer devA = new Developer("Micaela", "Feldmann", rd.nextInt(999999),
+                Speciality.BEND, Gender.F);
+        Address addressA = new Address("Argentina", "Saenz Peña");
+        devA.setAddress(addressA);
+        LOGGER.info(devA + " is from " + addressA);
 
-        Developer devB = new Developer("Brian", "Villamayor", rd.nextInt(999999), Speciality.FEND);
-        devB.setAddress(new Address<>());
-        LOGGER.info(devB.getAddress());
+        Developer devB = new Developer("Brian", "Villamayor", rd.nextInt(999999),
+                Speciality.FEND, Gender.M);
+        Address addressB = new Address("Argentina", "Formosa");
+        devB.setAddress(addressB);
+        LOGGER.info(devB + " is from " + addressB);
 
-        Developer devC = new Developer("Cristian", "Gomez", rd.nextInt(), Speciality.DB);
-        devC.setAddress(new Address<>());
-        LOGGER.info(devC.getAddress());
+        Developer devC = new Developer("Cristian", "Gomez", rd.nextInt(), Speciality.DB,
+                Gender.M);
+        Address addressC = new Address("Uruguay","Montevideo");
+        devC.setAddress(addressC);
+        LOGGER.info(devC + " is from " + addressC);
 
-        Developer devD = new Developer("Agustin", "Cabeza", rd.nextInt(), Speciality.DB);
-        devD.setAddress(new Address<>());
-        LOGGER.info(devD.getAddress());
+        Developer devD = new Developer("Agustin", "Cabeza", rd.nextInt(), Speciality.DB,
+                Gender.M);
+        Address addressD = new Address("Brazil", "Rio de Janeiro");
+        LOGGER.info(devD + " is from " + addressD);
 
         Receptionist recs = new Receptionist("Skyler", "White", rd.nextInt());
         Accountant acc = new Accountant("Richard", "Newman", rd.nextInt());
@@ -127,26 +135,34 @@ public class CompanyRunner {
             throw new  EmployeeNotFoundException("This employee does not work for the company");
         }
 
+        Necessity.getRandomNecessity().getCost();
+        Necessity.IS.getCost();
 
         devB.serveCustomer(custC, Necessity.getRandomNecessity());
         devA.serveCustomer(custA, Necessity.getRandomNecessity());
         devC.serveCustomer(custB, Necessity.getRandomNecessity());
 
         ICalculate calc = (x, y) -> {
-            LOGGER.info("The total cost of your attention is:" + "\n" + (x * y));
-            if (x * y > 200) {
+            int total = x + y;
+            LOGGER.info("The total cost of your attention is:" + "\n" + total);
+            if (total >= 500) {
                 LOGGER.info("You can access to a discount");
-
-                Discountable disc = (c, p, q) -> {
-                    LOGGER.info("You get a " + q + "% off discount" +
-                            "\n" + "So the total now is: " + "\n" + (p * (100 - q) / 100));
-                };
-                disc.discount('$', (x * y), 20);
             }
-            Printable info = info1 -> {
-                LOGGER.info("Printing some info here");
+            Discountable disc = (c, p, q) -> {
+                int result = ((total * 20) / 100);
+                LOGGER.info("You get a " + q + "% off discount" +
+                        "\n" + "So the total now is: " + "\n" + result);
             };
+            disc.discount('$', (Necessity.getRandomNecessity().getCost() + 150), 20);
         };
+        calc.calculate(Necessity.getRandomNecessity().getCost(), 150);
+
+
+        Printable info = (s) -> LOGGER.info(s + "are working at the moment");
+        info.print("All employees ");
+
+
+
 
 
         acc.pay(devB, 500);

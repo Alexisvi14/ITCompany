@@ -1,6 +1,7 @@
 package com.solvd.staff;
 
 import com.solvd.enums.Speciality;
+import com.solvd.generalPurpose.Address;
 import com.solvd.generalPurpose.BankAccount;
 import com.solvd.generalPurpose.Person;
 import com.solvd.interfaces.AddEmployee;
@@ -13,6 +14,7 @@ public class Employee extends Person implements AddEmployee, Iwork {
     public static final Logger LOGGER = LogManager.getLogger(Employee.class);
     private int id;
     private double salary;
+    private Address address;
     private Speciality speciality;
     private BankAccount account;
 
@@ -47,8 +49,17 @@ public class Employee extends Person implements AddEmployee, Iwork {
         this.account = account;
     }
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, Address address) {
         super(firstName, lastName);
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

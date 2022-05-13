@@ -1,74 +1,59 @@
 package com.solvd.generalPurpose;
 
-public class Address <T, V>{
-    private T country;
-    private T state;
-    private T city;
-    private T street;
-    private V streetNumber;
-    private V zipCode;
+public class Address{
+    private String country;
+    private String state;
+    private String city;
+    private int street;
+    private int streetNumber;
 
 
     public Address() {}
 
-    public Address (T street, V streetNumber) {
-        this.street = street;
-        this.streetNumber = streetNumber;
-    }
 
-    public Address (T country, T state, T city, T street, V streetNumber) {
+    public Address (String country, String city) {
         this.country = country;
-        this.state = state;
         this.city = city;
-        this.street = street;
-        this.streetNumber = streetNumber;
     }
 
-    public T getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(T country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    public T getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(T state) {
+    public void setState(String state) {
         this.state = state;
     }
 
-    public T getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(T city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public T getStreet() {
+    public int getStreet() {
         return street;
     }
 
-    public void setStreet(T street) {
+    public void setStreet(int street) {
         this.street = street;
     }
 
-    public V getStreetNumber() {
+    public int getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(V streetNumber) {
+    public void setStreetNumber(int streetNumber) {
         this.streetNumber = streetNumber;
     }
 
-    public V getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(V zipCode) {
-        this.zipCode = zipCode;
-    }
 }

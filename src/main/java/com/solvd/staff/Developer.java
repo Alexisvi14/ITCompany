@@ -2,9 +2,11 @@ package com.solvd.staff;
 
 import com.solvd.customerRelated.Appointment;
 import com.solvd.customerRelated.Customer;
+import com.solvd.enums.Gender;
 import com.solvd.enums.Necessity;
 import com.solvd.enums.Speciality;
 import com.solvd.exceptions.AppointmentNotFoundException;
+import com.solvd.generalPurpose.Address;
 import com.solvd.interfaces.Idev;
 import com.solvd.threads.Conection;
 import org.apache.logging.log4j.LogManager;
@@ -20,10 +22,12 @@ public class Developer extends Employee implements Idev, Runnable {
     private Speciality speciality;
     private List<Appointment> appoints = new ArrayList<>();
     private Conection conection;
+    private Gender gender;
 
-    public Developer(String firstName, String lastName, int id, Speciality speciality) {
+    public Developer(String firstName, String lastName, int id, Speciality speciality, Gender gender) {
         super(firstName, lastName, id);
         this.speciality = speciality;
+        this.gender = gender;
     }
 
     public long getNpi() {
@@ -58,6 +62,7 @@ public class Developer extends Employee implements Idev, Runnable {
         this.conection = conection;
     }
 
+
     public void attendAppointment(Appointment appoint, Customer customer) throws AppointmentNotFoundException, AccountNotFoundException {
         if (appoints != null && this.getAppoints().contains(appoint) && customer.getAppoints().contains(appoint)) {
                 customer.payAppointment(appoint);
@@ -76,10 +81,8 @@ public class Developer extends Employee implements Idev, Runnable {
         LOGGER.info("Attention for: " + necessity.getNecessityLabel() + " has been given to the customer");
     }
 
-
     @Override
     public void dev(Developer developer) {
-
     }
 
     @Override

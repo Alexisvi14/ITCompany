@@ -1,5 +1,6 @@
 package com.solvd.reflections;
 
+import com.solvd.enums.Gender;
 import com.solvd.enums.Speciality;
 import com.solvd.staff.Developer;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ public class ReflectionImp {
         LOGGER.info("The super class of the " + Developer.class.getName() + " class is: " + Developer.class.getSuperclass());
         //Method[] m = c1.getMethods();
 
-        Class c1 = new Developer("Alexis", ";", 1, Speciality.DB).getClass();
+        Class c1 = new Developer("Alexis", ";", 1, Speciality.DB, Gender.M).getClass();
         Method[] m = c1.getMethods();
         Field[] m2 = c1.getFields();
 
